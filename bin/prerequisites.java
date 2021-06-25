@@ -30,7 +30,13 @@ class prerequisites {
         }
 
         /*Check directories exist */
-        List<String> requiredDirectories = List.of("./keycloak/extensions/target/classes");
+        List<String> requiredDirectories = List.of("./keycloak/extensions/target/classes",
+                "./keycloak/imex","./keycloak/themes/apps",
+                "./deployments/local/dev/run/keycloak/data",
+                "./keycloak/extensions/target/classes",
+                "./keycloak/themes/internal",
+                "./keycloak/config",
+                "./keycloak/cli");
         requiredDirectories.forEach(requiredDirectoryString ->
         {
             var requiredDirectory = new File(requiredDirectoryString);
