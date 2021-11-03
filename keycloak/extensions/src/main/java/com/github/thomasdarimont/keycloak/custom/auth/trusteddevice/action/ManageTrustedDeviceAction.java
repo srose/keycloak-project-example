@@ -49,7 +49,6 @@ public class ManageTrustedDeviceAction implements RequiredActionProvider {
 
     @Override
     public void requiredActionChallenge(RequiredActionContext context) {
-
         RealmModel realm = context.getRealm();
         UserModel user = context.getUser();
 
