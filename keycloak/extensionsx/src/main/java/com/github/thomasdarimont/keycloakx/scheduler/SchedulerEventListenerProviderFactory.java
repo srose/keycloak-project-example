@@ -52,6 +52,8 @@ public class SchedulerEventListenerProviderFactory implements EventListenerProvi
     public void postInit(KeycloakSessionFactory sessionFactory) {
         var dataSource = extractDataSource();
 
+        this.handler = new SchedulerExecutionHandler(sessionFactory);
+
         myAdhocTask = Tasks.oneTime("Send-Mail-Exactly-Once", CommandData.class)
                 .execute(this.handler::sendMail);
 
@@ -63,8 +65,6 @@ public class SchedulerEventListenerProviderFactory implements EventListenerProvi
                 .build();
 
         scheduler.start();
-
-        this.handler = new SchedulerExecutionHandler(sessionFactory);
     }
 
     private DataSource extractDataSource() {

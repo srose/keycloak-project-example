@@ -35,7 +35,7 @@
 
         <addPrimaryKey
                 constraintName="PK_TASK_SCHEDULER_ID"
-                tableName="scheduled_tasks"
+                tableName="custom_scheduled_tasks"
                 columnNames="task_name,task_instance"
         />
 
