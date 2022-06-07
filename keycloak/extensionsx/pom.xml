@@ -46,6 +46,12 @@
             <version>13.0.0.Final</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.kagkarlsson</groupId>
+            <artifactId>db-scheduler</artifactId>
+            <version>11.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -59,6 +65,22 @@
                     <excludes>
                         <exclude>**/*IntegrationTest.java</exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
                 </configuration>
             </plugin>
         </plugins>

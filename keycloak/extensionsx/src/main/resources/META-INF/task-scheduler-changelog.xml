@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="sebastian.rose" id="task-scheduler-1.0">
+
+        <createTable tableName="custom_scheduled_tasks">
+            <column name="task_name" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task_instance" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task_data" type="BINARY">
+                <constraints nullable="false"/>
+            </column>
+            <column name="execution_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="picked" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="picked_by" type="CLOB">
+            </column>
+            <column name="last_success" type="TIMESTAMP">
+            </column>
+            <column name="last_failure" type="TIMESTAMP">
+            </column>
+            <column name="consecutive_failures" type="BIGINT">
+            </column>
+            <column name="last_heartbeat" type="TIMESTAMP">
+            </column>
+            <column name="version" type="BIGINT">
+            </column>
+        </createTable>
+
+        <addPrimaryKey
+                constraintName="PK_TASK_SCHEDULER_ID"
+                tableName="scheduled_tasks"
+                columnNames="task_name,task_instance"
+        />
+
+    </changeSet>
+
+</databaseChangeLog>
