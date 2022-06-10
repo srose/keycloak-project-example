@@ -3,9 +3,12 @@ package com.github.thomasdarimont.keycloakx.scheduler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.kagkarlsson.scheduler.Scheduler;
 import com.github.kagkarlsson.scheduler.serializer.JacksonSerializer;
-import com.github.kagkarlsson.scheduler.task.helper.OneTimeTask;
-import com.github.kagkarlsson.scheduler.task.helper.Tasks;
-import com.github.thomasdarimont.keycloakx.scheduler.data.CommandData;
+import com.github.kagkarlsson.scheduler.task.Task;
+import com.github.thomasdarimont.keycloakx.scheduler.domain.Command;
+import com.github.thomasdarimont.keycloakx.scheduler.domain.SendMailCommand;
+import com.github.thomasdarimont.keycloakx.scheduler.domain.SendMailCommandData;
+import com.github.thomasdarimont.keycloakx.scheduler.domain.SendSmsCommand;
+import com.github.thomasdarimont.keycloakx.scheduler.domain.SendSmsCommandData;
 import com.google.auto.service.AutoService;
 import org.keycloak.Config;
 import org.keycloak.events.Event;
@@ -18,7 +21,7 @@ import org.keycloak.models.KeycloakSessionFactory;
 import javax.enterprise.inject.spi.CDI;
 import javax.sql.DataSource;
 import java.time.Instant;
-import java.util.UUID;
+import java.util.List;
 
 @AutoService(EventListenerProviderFactory.class)
 public class SchedulerEventListenerProviderFactory implements EventListenerProviderFactory, EventListenerProvider {
@@ -27,18 +30,27 @@ public class SchedulerEventListenerProviderFactory implements EventListenerProvi
 
     private Scheduler scheduler;
 
-    private OneTimeTask<CommandData> myAdhocTask;
-
-    private SchedulerExecutionHandler handler;
+    private Command sendMailCommand;
+    private Command sendSmsCommand;
 
     @Override
     public EventListenerProvider create(KeycloakSession session) {
-        String id = UUID.randomUUID().toString();
 
-        var taskData = new CommandData();
-        taskData.realmId = session.getContext().getRealm().getId();
+        var atTime = Instant.now().plusSeconds(3);
 
-        scheduler.schedule(myAdhocTask.instance(id, taskData), Instant.now().plusSeconds(3));
+        {
+            var malData = new SendMailCommandData();
+            malData.realmId = session.getContext().getRealm().getId();
+            var oneMailCommandInstance = this.sendMailCommand.instantiate(malData);
+            scheduler.schedule(oneMailCommandInstance, atTime);
+        }
+
+        {
+            var smsData = new SendSmsCommandData();
+            smsData.realmId = session.getContext().getRealm().getId();
+            var oneSmsCommandInstance = this.sendSmsCommand.instantiate(smsData);
+            scheduler.schedule(oneSmsCommandInstance, atTime);
+        }
 
         return this;
     }
@@ -52,13 +64,16 @@ public class SchedulerEventListenerProviderFactory implements EventListenerProvi
     public void postInit(KeycloakSessionFactory sessionFactory) {
         var dataSource = extractDataSource();
 
-        this.handler = new SchedulerExecutionHandler(sessionFactory);
+        this.sendMailCommand = new SendMailCommand(sessionFactory);
+        this.sendSmsCommand = new SendSmsCommand();
 
-        myAdhocTask = Tasks.oneTime("Send-Mail-Exactly-Once", CommandData.class)
-                .execute(this.handler::sendMail);
+        List<Task<?>> allTasks = List.of(
+                this.sendMailCommand.getTask(),
+                this.sendSmsCommand.getTask()
+        );
 
         this.scheduler = Scheduler
-                .create(dataSource, myAdhocTask)
+                .create(dataSource, allTasks)
                 .tableName("custom_scheduled_tasks")
                 .serializer(new JacksonSerializer(new ObjectMapper()))
                 .registerShutdownHook()
