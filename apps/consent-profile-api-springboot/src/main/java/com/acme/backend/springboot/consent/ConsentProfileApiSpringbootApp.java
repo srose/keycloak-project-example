@@ -6,10 +6,10 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
-public class BackendApiSpringbootApp {
+public class ConsentProfileApiSpringbootApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BackendApiSpringbootApp.class, args);
+		SpringApplication.run(ConsentProfileApiSpringbootApp.class, args);
 	}
 
 }

@@ -27,7 +27,7 @@ class ConsentFormController {
 
         log.info("### Accessing {}", request.getRequest().getRequestURI());
 
-        Object username = authentication.getName();
+        Object username = AuthenticationHelper.getName(authentication);
 
         Map<String, Object> data = new HashMap<>();
         data.put("message", "Hello " + username);
