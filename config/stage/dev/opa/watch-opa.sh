@@ -6,6 +6,7 @@ lint_rego() {
 
 update_opa() {
     curl -s -o /dev/null -X PUT --data-binary @iam/keycloak/policy.rego  localhost:18181/v1/policies/iam/keycloak
+    curl -s -o /dev/null -X PUT --data-binary @iam/keycloak/permissions.rego  localhost:18181/v1/policies/iam/keycloak
 }
 
 publish_rego() {
