@@ -5,9 +5,11 @@
     <scripts>
       <script value="start" />
     </scripts>
-    <node-interpreter value="project" />
+    <node-interpreter value="$USER_HOME$/.nvm/versions/node/v16.13.2/bin/node" />
+    <package-manager value="npm" />
     <envs>
-      <env name="SAML_IDP_CERT" value="MIICqTCCAZECBgF+7Y3g3zANBgkqhkiG9w0BAQsFADAYMRYwFAYDVQQDDA1hY21lLWludGVybmFsMB4XDTIyMDIxMjEwNDgyNVoXDTMyMDIxMjEwNTAwNVowGDEWMBQGA1UEAwwNYWNtZS1pbnRlcm5hbDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJEvM26BsoRBytg2XhqsIBbEYuoiaidviePcGLYNpawbEwaaLMejJqnUSZLcUU4hpMFiOJoRADvKJ2dsqKNKka8RhPoExSlQdWpSIdbw0A4lxzh/LILz9P3Dtw9EZ8+VA9Ng/ulVcQDio//LnXKYWYsAchdQ3AUocDgSvLBjwXyZx3Luz6B0a3Y1KmKUA/BQov1PQsD/obEADJZFRUVcplLZKWcc5oqIjFQQV6dygjekKNnSpDa5YgHR5fAdOtrlwSsrVxrZvOR+kTliDCu6XaGPf6maekTGLeiJ+cjfBM7EDX5qINKY/5NZfqyob9KvxHhqtkgkHDfPma2inWdOthcCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAKB2US3pHYlaiC7LjG/6pENpza6+tdOK38xz2Xci7+zlgN1ZeITMYFHBK1HFWAodRGdjij0/0UhPd/dSxtVOcRbxmVi5xR4I+4YnuuUwC9KE8QtkysYWJOlDm9X1b9gmpe+6R1yV+ymfMkHL8Cu0zuOyV5KI1YOwx0ASFYdv6iLo4fJIDbRokHzkvq2jfC02WF7Z+3ARgIib6R0v+Kf161Wnm7l6Eci8IAEDE2XIA7TL2rHQEiserbnpxXgtMYmW2jMSkZWOolMTVPmHxb0klSQD85i3IZEQ5IhyjCjDnyEoFEpTvZqvAYc4sGy54C05Bqy5AdSN6Ec3l+o1avodXpw==" />
+      <env name="SAML_IDP_CERT" value="MIICyTCCAbECBgGDow2lPzANBgkqhkiG9w0BAQsFADAoMSYwJAYDVQQDDB1hY21lLXdlYmFwcC1zYW1sLW5vZGUtZXhwcmVzczAeFw0yMjEwMDQxMjUwMjRaFw0zMjEwMDQxMjUyMDRaMCgxJjAkBgNVBAMMHWFjbWUtd2ViYXBwLXNhbWwtbm9kZS1leHByZXNzMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvgepV9YtwFzTYmjIrw8Pa7lK/OaqCvKMoa64Gu0ObigbEovuiYiBXoXkqdavGRmn9/RDLQtvfkNhbcidUNirUDrhTFgt/3L0VhEOuXEb/BRD5BFUBM+iHXfRISac8dhhv4bVGbn53DCzlMOGJrQF44aKBQ/AHywvujU078bRajKWOsao+ntmpYrSZZkMTnGSBffccjtzzOkJmeV1waDmRx4B7ZWEx4tgsHeJZAu5MAhiIbSNmdrWYT+HPXDE3LityfHoP5JNKkvH3cVRzVFAGz6YF1EtOQs9cHeH7IFDebuAGXF14hQXtEKbNw6jGH57SPbcg+t6OZdnc4Xqx6FE1wIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQBlxDTobSZlQt5UNcI9Budvvoq886I4ptRf2t4sCyez0Ctfmzu89B4iy08chiAjXCBDBitf2bFU6tCNNlNrJMCKDIRuqGgPrYtEWW6td0zcC6aQtsg4JrSQwofVWSV0/nTbPVHqoWMmF9qnb8Wg7cOgMsXLZxWoUrJUQmE2jLH3SYFV0OUuwBdNdDMjn2UG6oyxJQxrUXbPLzgLujiYucjy82aygkd/XMNM8dnV6RQTwbOi2g0HjcAJ5HaNdXIwouJMk3jbp2BvPSzFknR33P8FgQLtteLsunzSPzTBKNn7aVDcY4QXlNr8VJbs6fSWgPFBu0t6p15EL3h6j017Rfa9" />
+      <env name="SAML_SP_KEY_FILE" value="key.pem" />
     </envs>
     <method v="2" />
   </configuration>
